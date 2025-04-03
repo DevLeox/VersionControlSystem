@@ -1,50 +1,69 @@
-# Multi-Format Data Converter 📜
+# Version Control System 📜
 
-A lightweight **Java-based tool** designed to convert data between JSON, XML, and HTML formats. This project helps developers handle multi-format data with ease, making it ideal for projects requiring simple and efficient data transformation.
+A lightweight **Java-based version control system** to manage and track versions of content with corresponding change logs. This tool can assist developers and teams in maintaining a structured and accessible record of project versions.
 
 ---
 
 ## Features ✨
 
-- **JSON to XML**: Convert JSON strings to XML format.
-- **JSON to HTML**: Transform JSON strings into readable HTML.
-- **XML to JSON**: Process XML data and turn it into JSON format.
-- **XML to HTML**: Convert XML strings into HTML.
-- **HTML to JSON**: Parse HTML content and turn it into JSON.
-- **HTML to XML**: Convert HTML strings back into XML.
+- **Add Versions**: Save new versions along with their change logs.
+- **Retrieve Content**: Access the content of a specific version.
+- **Track Changes**: View the change log of any version.
+- **Compare Versions**: Check if two versions are identical or different.
+- **List All Versions**: See a comprehensive list of all stored versions with metadata.
 
 ---
 
 ## Usage 💻
 
-### Convert JSON to XML:
+### Add a Version:
 ```java
-String xmlOutput = ConvertJson.jsonToXml("{\"name\":\"John\", \"age\":\"30\"}");
-System.out.println("Converted XML: \n" + xmlOutput);
+VersionControlSystem vcs = new VersionControlSystem();
+int versionNumber = vcs.addVersion("Initial content", "Created the base version.");
+System.out.println("New version added: " + versionNumber);
 ```
 
-### Convert XML to JSON:
+### Retrieve Content:
 ```java
-String jsonOutput = ConvertXml.xmlToJson("<name>John</name><age>30</age>");
-System.out.println("Converted JSON: \n" + jsonOutput);
+String content = vcs.getVersionContent(versionNumber);
+System.out.println("Version Content: " + content);
 ```
 
-### Convert HTML to XML:
+### Retrieve Change Log:
 ```java
-String xmlOutput = ConvertHtml.htmlToXml("<p>name: John</p><p>age: 30</p>");
-System.out.println("Converted XML: \n" + xmlOutput);
+String changeLog = vcs.getVersionChangeLog(versionNumber);
+System.out.println("Change Log: " + changeLog);
+```
+
+### List All Versions:
+```java
+List<String> allVersions = vcs.listAllVersions();
+allVersions.forEach(System.out::println);
+```
+
+### Compare Two Versions:
+```java
+String comparison = vcs.compareVersions(1, 2);
+System.out.println("Comparison Result: " + comparison);
 ```
 
 ---
 
 ## Code Overview 🛠️
 
-This repository includes three main classes:
-- **ConvertJson**: Handles conversions between JSON and XML/HTML formats.
-- **ConvertXml**: Transforms XML into JSON/HTML formats.
-- **ConvertHtml**: Converts HTML to JSON/XML formats.
+### `VersionControlSystem.java`
 
-Each class has two methods for specific transformations and operates entirely on input strings.
+The **`VersionControlSystem`** class includes:
+- **Attributes**:
+  - `versions`: A `Map` to store version content.
+  - `changeLogs`: A `Map` to store change logs of each version.
+  - `versionCount`: An integer to track the number of versions.
+- **Core Methods**:
+  - `addVersion(String content, String changeLog)`: Adds a new version.
+  - `getVersionContent(int versionNumber)`: Retrieves content of a specific version.
+  - `getVersionChangeLog(int versionNumber)`: Retrieves the change log of a version.
+  - `listAllVersions()`: Returns all versions in a list format.
+  - `compareVersions(int version1, int version2)`: Compares the content of two versions.
 
 ---
 
@@ -52,24 +71,24 @@ Each class has two methods for specific transformations and operates entirely on
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/DevLeox/Converter.git
-   cd Converter
+   git clone https://github.com/DevLeox/VersionControlSystem.git
+   cd VersionControlSystem
    ```
 
 2. **Compile and Run**:
    ```bash
-   javac ConvertJson.java ConvertXml.java ConvertHtml.java
-   java ConvertJson
+   javac com/LeoxDev/VersionControlSystem/VersionControlSystem.java
+   java com.LeoxDev.VersionControlSystem.VersionControlSystem
    ```
 
 ---
 
 ## Contributing 🤝
 
-Contributions are welcome! Feel free to open an issue or pull request for suggestions or enhancements.
+Contributions are welcome! Open an issue or submit a pull request to help improve this version control system.
 
 ---
 
 ## License 📜
 
-This project is licensed under the MIT License. Modify and use it as needed.
+This project is licensed under the MIT License. Feel free to use, modify, and distribute as per the license terms.
